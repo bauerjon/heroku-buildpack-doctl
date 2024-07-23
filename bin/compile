@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# bin/compile <build-dir> <cache-dir> <env-dir>
+
+BUILD_DIR=$1
+CACHE_DIR=$2
+ENV_DIR=$3
+
+# Download doctl
+DOCTL_VERSION="1.109.1"
+DOCTL_URL="https://github.com/digitalocean/doctl/releases/download/v${DOCTL_VERSION}/doctl-${DOCTL_VERSION}-linux-amd64.tar.gz"
+
+echo "-----> Downloading doctl v${DOCTL_VERSION}"
+curl -sL "${DOCTL_URL}" | tar -xzv -C "${BUILD_DIR}/bin/"
+
+# Make doctl executable
+chmod +x "${BUILD_DIR}/bin/doctl"
+
+echo "-----> doctl installation completed"
